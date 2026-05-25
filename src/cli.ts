@@ -79,16 +79,11 @@ program
       };
 
       if (opts.ai !== false) {
-        const apiKey = process.env.ANTHROPIC_API_KEY;
-        if (!apiKey) {
-          process.stderr.write(chalk.yellow("  ANTHROPIC_API_KEY not set — skipping AI narrative (use --no-ai to suppress this warning)\n"));
-        } else {
-          process.stderr.write(chalk.gray("  Generating AI behavioral narrative...\n"));
-          try {
-            report.aiNarrative = await generateNarrative(report);
-          } catch (err) {
-            process.stderr.write(chalk.yellow(`  AI narrative failed: ${(err as Error).message}\n`));
-          }
+        process.stderr.write(chalk.gray("  Generating AI behavioral narrative...\n"));
+        try {
+          report.aiNarrative = await generateNarrative(report);
+        } catch (err) {
+          process.stderr.write(chalk.yellow(`  AI narrative failed: ${(err as Error).message}\n`));
         }
       }
 

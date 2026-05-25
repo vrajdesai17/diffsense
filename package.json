@@ -1,6 +1,6 @@
 {
   "name": "diffsense",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Semantic diff analyzer — understand what your code actually does differently, not just what lines changed",
   "main": "dist/cli.js",
   "bin": {
