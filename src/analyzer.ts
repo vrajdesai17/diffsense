@@ -196,7 +196,6 @@ function riskForCategory(cat: ChangeCategory): RiskLevel {
 
 export function analyzeFileDiff(patch: FilePatch): SemanticChange[] {
   const changes: SemanticChange[] = [];
-  const project = new Project({ useInMemoryFileSystem: true, skipAddingFilesFromTsConfig: true });
 
   const fileName = patch.file.split("/").pop() ?? patch.file;
   const isTS = fileName.endsWith(".ts") || fileName.endsWith(".tsx");
@@ -209,11 +208,15 @@ export function analyzeFileDiff(patch: FilePatch): SemanticChange[] {
   let newSource: SourceFile | undefined;
 
   try {
+    // Use separate projects with the SAME filename so ts-morph generates
+    // identical import paths in resolved return types — prevents false positives.
     if (patch.oldContent.trim()) {
-      oldSource = project.createSourceFile(`old_${fileName}`, patch.oldContent, { overwrite: true });
+      const oldProject = new Project({ useInMemoryFileSystem: true, skipAddingFilesFromTsConfig: true });
+      oldSource = oldProject.createSourceFile(fileName, patch.oldContent, { overwrite: true });
     }
     if (patch.newContent.trim()) {
-      newSource = project.createSourceFile(`new_${fileName}`, patch.newContent, { overwrite: true });
+      const newProject = new Project({ useInMemoryFileSystem: true, skipAddingFilesFromTsConfig: true });
+      newSource = newProject.createSourceFile(fileName, patch.newContent, { overwrite: true });
     }
   } catch {
     return changes;
