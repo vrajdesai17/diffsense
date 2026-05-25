@@ -21,7 +21,7 @@ export async function getChangedFiles(
     fromRef,
     toRef,
     "--name-only",
-    "--diff-filter=M",
+    "--diff-filter=ACMR",
   ]);
 
   const changedFiles = diff
