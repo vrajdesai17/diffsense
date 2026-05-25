@@ -1,7 +1,7 @@
-import chalk, { ChalkInstance } from "chalk";
+import chalk from "chalk";
 import { DiffReport, FileDiffResult, RiskLevel, SemanticChange, ChangeCategory } from "./types.js";
 
-const RISK_COLOR: Record<RiskLevel, ChalkInstance> = {
+const RISK_COLOR: Record<RiskLevel, (s: string) => string> = {
   HIGH: chalk.bold.red,
   MEDIUM: chalk.bold.yellow,
   LOW: chalk.cyan,
