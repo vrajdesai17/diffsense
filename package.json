@@ -1,6 +1,6 @@
 {
   "name": "diffsense",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Semantic diff analyzer — understand what your code actually does differently, not just what lines changed",
   "main": "dist/cli.js",
   "bin": {
@@ -13,7 +13,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": ["git", "diff", "semantic", "ast", "code-review", "typescript", "developer-tools", "cli"],
-  "author": "",
+  "author": "Vraj Desai",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
