@@ -27,7 +27,11 @@ export async function getChangedFiles(
   const changedFiles = diff
     .trim()
     .split("\n")
-    .filter((f) => f && (f.endsWith(".ts") || f.endsWith(".tsx") || f.endsWith(".js") || f.endsWith(".jsx")));
+    .filter((f) => f && (
+      f.endsWith(".ts") || f.endsWith(".tsx") ||
+      f.endsWith(".js") || f.endsWith(".jsx") ||
+      f.endsWith(".py")
+    ));
 
   const results: FilePatch[] = [];
 

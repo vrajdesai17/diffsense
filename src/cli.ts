@@ -35,7 +35,7 @@ program
       const patches = await getChangedFiles(repoRoot, from, to);
 
       if (patches.length === 0) {
-        console.log(chalk.yellow("  No TypeScript/JavaScript files changed between these refs."));
+        console.log(chalk.yellow("  No TypeScript/JavaScript/Python files changed between these refs."));
         process.exit(0);
       }
 

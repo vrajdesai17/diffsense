@@ -20,6 +20,7 @@ import {
 } from "ts-morph";
 import { ChangeCategory, RiskLevel, SemanticChange } from "./types.js";
 import { FilePatch } from "./git.js";
+import { analyzePythonDiff } from "./python-analyzer.js";
 
 interface FunctionSignature {
   name: string;
@@ -195,9 +196,13 @@ function riskForCategory(cat: ChangeCategory): RiskLevel {
 }
 
 export function analyzeFileDiff(patch: FilePatch): SemanticChange[] {
-  const changes: SemanticChange[] = [];
-
   const fileName = patch.file.split("/").pop() ?? patch.file;
+
+  if (fileName.endsWith(".py")) {
+    return analyzePythonDiff(patch);
+  }
+
+  const changes: SemanticChange[] = [];
   const isTS = fileName.endsWith(".ts") || fileName.endsWith(".tsx");
 
   if (!isTS && !fileName.endsWith(".js") && !fileName.endsWith(".jsx")) {
