@@ -1,0 +1,41 @@
+{
+  "name": "diffsense",
+  "version": "1.0.1",
+  "description": "Semantic diff analyzer — understand what your code actually does differently, not just what lines changed",
+  "main": "dist/cli.js",
+  "bin": {
+    "diffsense": "./bin/diffsense.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["git", "diff", "semantic", "ast", "code-review", "typescript", "developer-tools", "cli"],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.98.0",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "simple-git": "^3.36.0",
+    "ts-morph": "^28.0.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsx": "^4.22.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
+}
