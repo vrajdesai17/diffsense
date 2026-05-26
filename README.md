@@ -201,4 +201,4 @@ diffsense analyzes `.ts`, `.tsx`, `.js`, `.jsx`, and `.py` files.
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE)
