@@ -1,6 +1,6 @@
 # diffsense
 
-**Semantic diff analyzer for TypeScript & JavaScript — understand what your code actually *does* differently, not just what lines changed.**
+**Semantic diff analyzer for TypeScript, JavaScript & Python — understand what your code actually *does* differently, not just what lines changed.**
 
 `git diff` shows you which lines moved. `diffsense` shows you which behaviors changed.
 
@@ -142,16 +142,24 @@ diffsense explain src/auth/session.ts
 
 ## AI narrative (optional)
 
-Set `ANTHROPIC_API_KEY` for a plain-English behavioral summary after the structured output:
+diffsense includes a plain-English behavioral summary by default — **no API key needed**. It uses a free hosted backend (10 narrations/day per IP).
+
+```bash
+diffsense diff main HEAD   # AI narrative included automatically
+```
+
+If you have your own `ANTHROPIC_API_KEY`, diffsense will use it directly instead (unlimited, faster):
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 diffsense diff main HEAD
 ```
 
-The system prompt is cached on Anthropic's side, so repeated calls on large diffs are token-efficient.
+Use `--no-ai` to skip the narrative entirely (faster, purely structural output):
 
-Use `--no-ai` to skip it entirely (faster, no key needed, still gives you the full structured analysis).
+```bash
+diffsense diff HEAD~1 HEAD --no-ai
+```
 
 ---
 
@@ -185,7 +193,7 @@ diffsense diff origin/main HEAD --no-ai --risk HIGH
 4. **Classification** — each detected difference is assigned a category and risk level
 5. **AI narration** — the structured findings are sent to Claude with a cached system prompt, which writes a plain-English behavioral summary
 
-diffsense only analyzes `.ts`, `.tsx`, `.js`, and `.jsx` files.
+diffsense analyzes `.ts`, `.tsx`, `.js`, `.jsx`, and `.py` files.
 
 ---
 
