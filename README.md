@@ -1,5 +1,7 @@
 # diffsense
 
+> Built by Vraj Desai — 90% written by me, 10% assisted by Claude AI.
+
 **Semantic diff analyzer for TypeScript, JavaScript & Python — understand what your code actually *does* differently, not just what lines changed.**
 
 `git diff` shows you which lines moved. `diffsense` shows you which behaviors changed.
